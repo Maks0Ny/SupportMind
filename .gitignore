@@ -1,0 +1,76 @@
+# -----------------------
+# OS / editor
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.python-version
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pytest / coverage / tooling
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# -----------------------
+# Backend build / local files
+# -----------------------
+backend/data/processed/
+backend/notebooks/.ipynb_checkpoints/
+backend/artifacts/*.joblib
+backend/artifacts/*.pkl
+backend/artifacts/*.onnx
+
+# Alembic / sqlite local leftovers
+*.db
+*.sqlite3
+
+# -----------------------
+# Frontend
+# -----------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# -----------------------
+# Docker
+# -----------------------
+docker-data/
+postgres-data/
+
+# -----------------------
+# Misc
+# -----------------------
+*.tmp
+*.swp
