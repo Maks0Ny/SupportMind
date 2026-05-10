@@ -16,7 +16,9 @@ class PredictionBase(Base):
     __tablename__ = "predictions"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    ticket_id: Mapped[int] = mapped_column(ForeignKey("tickets.id"), unique=True, nullable=False)
+    ticket_id: Mapped[int] = mapped_column(
+        ForeignKey("tickets.id"), unique=True, nullable=False
+    )
 
     category: Mapped[str] = mapped_column(String(100), nullable=False)
     priority: Mapped[str] = mapped_column(String(50), nullable=False)

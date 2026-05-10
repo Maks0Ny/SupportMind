@@ -20,7 +20,5 @@ class TicketBase(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     prediction: Mapped[PredictionBase] = relationship(
-        back_populates="ticket",
-        uselist=False,
-        cascade="all, delete-orphan"
+        back_populates="ticket", uselist=False, cascade="all, delete-orphan"
     )

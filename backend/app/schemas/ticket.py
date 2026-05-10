@@ -1,6 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
 
+
 class TicketAnalyzeRequest(BaseModel):
     text: str = Field(..., min_length=5, max_length=2000)
 

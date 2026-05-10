@@ -1,7 +1,9 @@
 from fastapi.testclient import TestClient
 
 
-def analyze_ticket(client: TestClient, text: str = "The app crashes during payment") -> dict:
+def analyze_ticket(
+    client: TestClient, text: str = "The app crashes during payment"
+) -> dict:
     response = client.post("/api/v1/tickets/analyze", json={"text": text})
 
     assert response.status_code == 200

@@ -15,7 +15,9 @@ def test_predictor_detects_payment_bug() -> None:
 def test_predictor_detects_login_issue() -> None:
     predictor = SupportTicketPredictor()
 
-    result = predictor.predict("I cannot login because the password reset page is broken")
+    result = predictor.predict(
+        "I cannot login because the password reset page is broken"
+    )
 
     assert result.category == "login_issue"
     assert result.priority == "medium"

@@ -150,9 +150,11 @@ class SupportTicketPredictor:
 
     def predict(self, text: str) -> PredictionResult:
         normalized_text = normalize_ticket_text(text)
-        category, category_score, category_confidence = self._predict_category_with_model(
-            raw_text=text,
-            normalized_text=normalized_text,
+        category, category_score, category_confidence = (
+            self._predict_category_with_model(
+                raw_text=text,
+                normalized_text=normalized_text,
+            )
         )
         priority, priority_score = self._predict_priority(normalized_text)
         sentiment, sentiment_score = self._predict_sentiment(normalized_text)

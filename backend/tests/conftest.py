@@ -25,9 +25,15 @@ from app.main import app  # noqa: E402
 
 @pytest.fixture(autouse=True)
 def disable_cache(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr("app.services.dashboard_service.get_dashboard_cache", lambda: None)
-    monkeypatch.setattr("app.services.dashboard_service.set_dashboard_cache", lambda value: None)
-    monkeypatch.setattr("app.services.ticket_service.clear_dashboard_cache", lambda: None)
+    monkeypatch.setattr(
+        "app.services.dashboard_service.get_dashboard_cache", lambda: None
+    )
+    monkeypatch.setattr(
+        "app.services.dashboard_service.set_dashboard_cache", lambda value: None
+    )
+    monkeypatch.setattr(
+        "app.services.ticket_service.clear_dashboard_cache", lambda: None
+    )
 
 
 @pytest.fixture()

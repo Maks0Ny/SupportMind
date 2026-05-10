@@ -9,12 +9,14 @@ class TicketAnalyzeResponse(BaseModel):
     sentiment: str
     confidence: float
 
+
 class TicketExampleResponse(BaseModel):
     id: int
     text: str
     category: str
     priority: str
     sentiment: str
+
 
 class PredictionData(BaseModel):
     category: str

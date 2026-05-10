@@ -1,4 +1,3 @@
-
 from pydantic import BaseModel
 
 
@@ -9,6 +8,3 @@ class DashboardSummaryResponse(BaseModel):
     by_category: dict[str, int]
     by_priority: dict[str, int]
     by_sentiment: dict[str, int]
-    
-    
-    
