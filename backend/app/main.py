@@ -2,13 +2,20 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
+from app.core.logging_config import setup_logging
 from app.api.v1.endpoints.tickets import router as tickets_router
+from app.api.v1.endpoints.dashboard import router as dashboard_router
+from app.middleware.logging import log_requests_middleware
 
+
+setup_logging(settings.LOG_LEVEL)
 
 app = FastAPI(
     title=settings.APP_NAME,
     debug=settings.APP_DEBUG,
 )
+
+app.middleware("http")(log_requests_middleware)
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,6 +29,7 @@ app.add_middleware(
 )
 
 app.include_router(tickets_router, prefix=settings.API_V1_PREFIX)
+app.include_router(dashboard_router, prefix=settings.API_V1_PREFIX)
 
 
 @app.get("/")

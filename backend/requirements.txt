@@ -7,10 +7,10 @@ pydantic
 pydantic-settings
 python-dotenv
 python-multipart
-pandas
-numpy
-scikit-learn
-joblib
+redis
+torch
+transformers
 pytest
+pytest-cov
 httpx
 ruff

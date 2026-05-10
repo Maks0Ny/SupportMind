@@ -1,0 +1,26 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build Docker images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t supportmind-backend:test ./backend
+
+      - name: Build frontend image
+        run: >
+          docker build
+          --build-arg VITE_API_BASE_URL=http://localhost:8000/api/v1
+          -t supportmind-frontend:test
+          ./frontend

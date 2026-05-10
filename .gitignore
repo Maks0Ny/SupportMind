@@ -46,6 +46,9 @@ htmlcov/
 # Backend build / local files
 # -----------------------
 backend/data/processed/
+backend/ml/data/raw/
+backend/ml/data/processed/
+backend/ml/artifacts/
 backend/notebooks/.ipynb_checkpoints/
 backend/artifacts/*.joblib
 backend/artifacts/*.pkl

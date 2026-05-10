@@ -1,0 +1,83 @@
+services:
+  db:
+    image: postgres:16
+    container_name: supportmind_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 89600259928z
+      POSTGRES_DB: supportmind
+    ports:
+      - "5433:5432"
+    volumes:
+      - supportmind_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d supportmind"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: supportmind_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: supportmind_backend
+    restart: unless-stopped
+    environment:
+      APP_NAME: SupportMind
+      APP_ENV: development
+      APP_DEBUG: "true"
+      API_V1_PREFIX: /api/v1
+      LOG_LEVEL: INFO
+
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 89600259928z
+      POSTGRES_DB: supportmind
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+      CACHE_TTL_SECONDS: 60
+
+      ML_USE_TRAINED_MODEL: "true"
+      ML_DEVICE: cpu
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8000/api/v1
+    container_name: supportmind_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  supportmind_postgres_data:
