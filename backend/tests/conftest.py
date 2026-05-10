@@ -16,6 +16,8 @@ os.environ.setdefault("REDIS_HOST", "localhost")
 os.environ.setdefault("REDIS_PORT", "6379")
 os.environ.setdefault("REDIS_DB", "0")
 os.environ.setdefault("CACHE_TTL_SECONDS", "60")
+os.environ.setdefault("ML_USE_TRAINED_MODEL", "false")
+os.environ.setdefault("ML_DEVICE", "cpu")
 
 from app.db.session import Base, get_db  # noqa: E402
 from app.main import app  # noqa: E402

@@ -73,7 +73,9 @@ class TrainedCategoryPredictor:
             return torch.device("cuda")
 
         if requested_device == "cuda":
-            logger.warning("CUDA requested for API inference, but it is unavailable. CPU is used.")
+            logger.warning(
+                "CUDA requested for API inference, but it is unavailable. CPU is used."
+            )
 
         return torch.device("cpu")
 

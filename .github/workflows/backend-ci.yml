@@ -21,6 +21,12 @@ jobs:
       POSTGRES_DB: test
       POSTGRES_HOST: localhost
       POSTGRES_PORT: "5432"
+      REDIS_HOST: localhost
+      REDIS_PORT: "6379"
+      REDIS_DB: "0"
+      CACHE_TTL_SECONDS: "60"
+      ML_USE_TRAINED_MODEL: "false"
+      ML_DEVICE: "cpu"
 
     steps:
       - name: Checkout repository

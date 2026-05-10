@@ -21,10 +21,7 @@ class Settings(BaseSettings):
     ML_USE_TRAINED_MODEL: bool = True
     ML_DEVICE: str = "cpu"
 
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        extra="ignore"
-    )
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     @property
     def DATABASE_URL(self) -> str:

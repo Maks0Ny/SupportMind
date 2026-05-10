@@ -175,7 +175,10 @@ class SupportTicketPredictor:
 
     def _load_trained_predictor(self):
         if not settings.ML_USE_TRAINED_MODEL:
-            logger.info("Trained ML predictor is disabled. Rule-based category predictor is used.")
+            logger.info(
+                "Trained ML predictor is disabled. "
+                "Rule-based category predictor is used."
+            )
             return None
 
         try:
@@ -183,7 +186,9 @@ class SupportTicketPredictor:
 
             return TrainedCategoryPredictor(device=settings.ML_DEVICE)
         except Exception:
-            logger.exception("Trained ML predictor is unavailable. Rule-based fallback is used.")
+            logger.exception(
+                "Trained ML predictor is unavailable. Rule-based fallback is used."
+            )
             return None
 
     def _predict_category_with_model(
